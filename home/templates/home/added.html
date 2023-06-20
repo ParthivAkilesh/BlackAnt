@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+
+<div class="details">
+  {% comment %} <form action="/addData" method="post"> {% endcomment %}
+    {% csrf_token %}
+    <div id="personal_details" class="subform">
+      <h5 class="d-flex justify-content-center" style="color: #151B54;">Added Sucessfully</h5>
+      <br>
+      <br>
+      </div>
+    </div>
+
+    
+
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 d-flex justify-content-center">
+        <a href="{% url 'addData' %}" type="submit">Add Another</a>
+        {% comment %} <input class="btn btn-primary btn-lg btn-block "  style="background: black;" type="submit" value="Add Another"> {% endcomment %}
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+
+  {% comment %} </form> {% endcomment %}
+</div>
+
+
+{% endblock %}

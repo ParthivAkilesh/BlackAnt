@@ -1,0 +1,123 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+
+{% comment %} <main style="margin-left:10%;">
+  <div class="resume-upload col-md-6 mx-auto my-5"
+    style="margin-bottom: -40px;margin-left:-50px;padding-left: 10px;padding-right: 10px;">
+    <h5 style="color: #151B54;"><strong>Hi {{user.username|title}}, Welcome to DocOpp!</strong></h5>
+    <h5 style="color: #151B54;">Please upload your resume to be considered for the job.we require a current and
+      up-to-date resume that accurately reflect your qualifications and experience. </h5>
+  </div>
+</main> {% endcomment %}
+{% comment %} <div class="file-uploader my-5">
+  <form action="/upload" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="mb-3">
+      <input class="form-control" type="file" id="formFileMultiple" name="resume_file" multiple>
+      <input type="hidden" name="remark" name="resume_file">
+    </div>
+    <input class="btn btn-primary" style="background: #151B54;" type="submit" value="Upload">
+  </form>
+</div> {% endcomment %}
+
+<div class="details">
+  <form action="/addData" method="post">
+    {% csrf_token %}
+    <div id="personal_details" class="subform">
+      <h5 class="d-flex justify-content-center" style="color: #151B54;">Enter the Details</h5>
+      <br>
+      <br>
+      <div class="row my-3">
+        <div class="row mb-4">
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">Name</p>
+            <input type="text" class="form-control" name="name" id="name" class="name" placeholder="Name"
+              requiredcomment>
+          </div>
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">Degree</p>
+            <input type="text" class="form-control" name="degree" id="degree" placeholder="Degree" requiredcomment>
+          </div>
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">Branch</p>
+            <input type="text" class="form-control" name="branch" id="branch" placeholder="Branch" requiredcomment>
+          </div>
+        </div>
+        <div class="row mb-4 d-flex justify-content-center">
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">Degree Percentage</p>
+            <input type="text" class="form-control" id="degreepercentage" name="degreepercentage" placeholder="Example: 83" requiredcomment>
+          </div>
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">Year of Passing</p>
+            <input type="text" class="form-control" id="yop" name="yop" placeholder="Year" requiredcomment>
+          </div>
+        </div>
+
+        <div class="row mb-4 d-flex justify-content-center">
+          
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">LinkedIn</p>
+            <input type="text" class="form-control" name="lin" id="lin" placeholder="LinkedIn Link" requiredcomment>
+          </div>
+          
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">Contact Number</p>
+            <input type="text" class="form-control" name="cno" id="cno" placeholder="Contact Number" requiredcomment>
+          </div>
+        </div>
+
+        <div class="row mb-4 d-flex justify-content-center">
+          <div class="col-md-4">
+            <p class="d-flex justify-content-center" style="color: #151B54;">Placed</p>
+            <div class="form-check d-flex justify-content-center">
+              <input type="checkbox" class="form-check-input" name="ps" id="ps">
+              <label class="form-check-label" for="ps">Placement Status</label>
+            </div>
+          </div>
+        </div>
+        
+
+        
+
+      </div>
+    </div>
+
+    
+
+    <div class="row">
+      <div class="col-md-3"></div>
+      <div class="col-md-6 d-flex justify-content-center">
+        <input class="btn btn-primary btn-lg btn-block " style="background: black;" type="submit" value="Submit">
+      </div>
+      <div class="col-md-3"></div>
+    </div>
+
+
+    {% comment %} <script>
+      var name = document.getElementById("name");
+      var degree = document.getElementById("degree");
+      var branch = document.getElementById("branch");
+      var degreepercentage = document.getElementById("degreepercentage");
+      var yop = document.getElementById("yop");
+      var lin = document.getElementById("lin")
+      var cno = document.getElementById("cno") {% endcomment %}
+
+
+      {% comment %} name.value = "{{name|remove_unicode}}"
+      degree.value = "{{degree|remove_unicode}}"
+      branch.value = "{{branch|remove_unicode}}"
+      degreepercentage.value = "{{degreepercentage|remove_unicode}}"
+      yop.value = "{{yop|remove_unicode}}"
+      lin.value = `{{lin|remove_unicode}}`
+      cno.value = `{{cno|remove_unicode}}` {% endcomment %}
+    {% comment %} </script> {% endcomment %}
+
+  </form>
+</div>
+
+
+{% endblock %}

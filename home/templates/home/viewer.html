@@ -1,0 +1,67 @@
+{% extends "base.html" %}
+
+{% block content %}
+{% load static %}
+
+
+
+<div class="details">
+
+  <div id="personal_details" class="subform">
+    <h5 class="d-flex justify-content-center" style="color: #151B54;">Viewing Added Data</h5>
+    
+    {% comment %} <form action="{% url 'viewer' %}" method="post">
+      {% csrf_token %}
+    
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="placement_status" id="flexRadioDefault1">
+        <label class="form-check-label" for="Placed">
+          Placed
+        </label>
+      </div>
+      <div class="form-check">
+        <input class="form-check-input" type="radio" name="placement_status" id="flexRadioDefault2" checked>
+        <label class="form-check-label" for="NonPlaced">
+          Non Placed
+        </label>
+      </div>
+    </form> {% endcomment %}
+    
+
+    <div class="table-responsive">
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Degree</th>
+            <th>Branch</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for detail in details %}
+          <tr>
+            <td>{{ detail.name }}</td>
+            <td>{{ detail.degree }}</td>
+            <td>{{ detail.branch }}</td>
+          </tr>
+          {% empty %}
+          <tr>
+            <td colspan="3">No Data Found</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  {% comment %} </form> {% endcomment %}
+  </div>
+</div>
+
+
+
+    
+
+  {% comment %} </form> {% endcomment %}
+</div>
+
+
+{% endblock %}

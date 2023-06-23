@@ -2,48 +2,122 @@
 
 <html>
 <head>
-    <title>Home</title>
-    <link rel="stylesheet" href="{% static 'css/styles.css'%}" />
+    <title>Black Ant</title>
+
+    {% comment %} 
+    Template requirements  {% endcomment %}
+    <meta charset="utf-8">
+    
+    <!--====== Title ======-->
+    <title>BlackAnt</title>
+    
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!--====== Favicon Icon ======-->
+    <link rel="shortcut icon" href="{% static 'images/favicon.png'%}" type="image/png">
+        
+    <!--====== Magnific Popup CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/magnific-popup.css'%}">
+        
+    <!--====== Slick CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/slick.css'%}">
+        
+    <!--====== Line Icons CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/LineIcons.css'%}">
+        
+    <!--====== Bootstrap CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/bootstrap.min.css'%}">
+    
+    <!--====== Default CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/default.css'%}">
+    
+    <!--====== Style CSS ======-->
+    <link rel="stylesheet" href="{% static 'css/style.css'%}">
+
+    {% comment %} ends  {% endcomment %}
+
+
+    {% comment %} <link rel="stylesheet" href="{% static 'css/styles.css'%}" /> {% endcomment %}
     <!-- CSS only -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="{% static 'CSS/styles.css' %}">
+    {% comment %} <link rel="stylesheet" href="{% static 'CSS/styles.css' %}"> {% endcomment %}
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" 
           integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
    
 </head>
 
 <body>
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" href="#">BlackAnt for KPR</a>
-   
-  
-    <div class="collapse navbar-collapse" id="navbarSupportedContent">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
-        </li>
-        <li class="nav-item">
-          {% if user.is_authenticated %}
-          <a class="nav-link" style="color: white;" href="{% url 'logout' %}">Logout</a>
-          {% endif %}
-        </li>
+      <!--====== NAVBAR TWO PART START ======-->
 
-      </ul>
-      
-    </div>
-  </nav>
-    <div class="my-5 container">{% block content %} {% endblock %}</div>
-    <footer class="footer">
+      <section class="navbar-area">
         <div class="container">
-        </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <nav class="navbar navbar-expand-lg">
+                        
+                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTwo" aria-controls="navbarTwo" aria-expanded="false" aria-label="Toggle navigation">
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                            <span class="toggler-icon"></span>
+                        </button>
+
+                        <div class="collapse navbar-collapse sub-menu-bar" id="navbarTwo">
+                            <ul class="navbar-nav m-auto">
+                                <li class="nav-item active"><a class="page-scroll text-decoration-none" href="#home">Home</a></li>
+                                <li class="nav-item"><a class="page-scroll text-decoration-none" href="#services">Services</a></li>
+                                <li class="nav-item"><a class="page-scroll text-decoration-none" href="#contact">Contact</a></li>
+                            </ul>
+                        </div>
+                        
+                        <div class="navbar-btn d-none d-sm-inline-block">
+                            <ul>
+                                <li><a class="solid text-decoration-none" href="{% url 'logout' %}">Logout</a></li>
+                            </ul>
+                        </div>
+                    </nav> <!-- navbar -->
+                </div>
+            </div> <!-- row -->
+        </div> <!-- container -->
+    </section>
+
+    <!--====== NAVBAR TWO PART ENDS ======-->
+    {% block content %} {% endblock %}
+   
       
       
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+        {% comment %} <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> {% endcomment %}
   
+        {% comment %} template scripts {% endcomment %}
+        <script src="static/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="static/js/vendor/modernizr-3.7.1.min.js"></script>
+    
+    <!--====== Bootstrap js ======-->
+    <script src="static/js/popper.min.js"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    
+    <!--====== Slick js ======-->
+    <script src="static/js/slick.min.js"></script>
+    
+    <!--====== Magnific Popup js ======-->
+    <script src="static/js/jquery.magnific-popup.min.js"></script>
+    
+    <!--====== Ajax Contact js ======-->
+    <script src="static/js/ajax-contact.js"></script>
+    
+    <!--====== Isotope js ======-->
+    <script src="static/js/imagesloaded.pkgd.min.js"></script>
+    <script src="static/js/isotope.pkgd.min.js"></script>
+    
+    <!--====== Scrolling Nav js ======-->
+    <script src="static/js/jquery.easing.min.js"></script>
+    <script src="static/js/scrolling-nav.js"></script>
+    
+    <!--====== Main js ======-->
+    <script src="static/js/main.js"></script>
+
+        {% comment %} ends {% endcomment %}
 </body>
 
 </html>

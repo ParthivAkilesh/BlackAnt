@@ -14,6 +14,10 @@ from django.http import HttpResponse
 def home(request):
     return render(request, 'home/home.html')
 
+@login_required(login_url='login')
+def cdc(request):
+    return render(request, 'home/cdc.html')
+
 
 def loginPage(request):
     
@@ -31,9 +35,9 @@ def loginPage(request):
             login(request, user)
             if user.is_superuser:
                 print("Superuser!!!!!!")
-                return render(request, 'home/admin.html', context)
+                return redirect('cdc')
             # return render(request, 'home/home.html', context)
-            return redirect('viewer')
+            return redirect('home')
         else:
             messages.info(request, 'Username or Password is incorrect')
 

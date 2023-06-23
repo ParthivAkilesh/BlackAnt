@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+
+<!-- {% block title %}Home{% endblock %} -->
+
+{% block content %}
+
+{% csrf_token %}
+
+    
+    <div class="subform">
+        <h5 class="d-flex justify-content-center" style="color: #151B54;">Home</h5>
+        <br>
+        <br>
+        <p> Welcome {{ username }} to the home page!</p>
+        </div>
+      </div>
+
+     {% comment %} <a href="{% url 'DataViewer' %}" type="submit">View Data</a> {% endcomment %}
+    {% comment %} <a href="https://www.google.co.in/" type="submit">Google</a> {% endcomment %}
+{% endblock %}

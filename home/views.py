@@ -72,11 +72,6 @@ def logoutUser(request):
     return redirect('login')
 
 
-def admin_page(request):
-    """
-    This view function is responsible for rendering the admin page.
-    """
-    return render(request, 'home/admin.html')
 
 
 def DataAdder(request):
@@ -84,6 +79,7 @@ def DataAdder(request):
     if request.method == 'POST':
         # Store Personal Details
         name = request.POST.get('name')
+        email = request.POST.get('email')
         degree = request.POST.get('degree')
         branch = request.POST.get('branch')
         degreepercentage = request.POST.get('degreepercentage')
@@ -92,31 +88,89 @@ def DataAdder(request):
         cno = request.POST.get('cno')
         ps = request.POST.get('ps', False) == 'on'
 
-        
-        
-        
         details = StudentInfo.objects.create(
+                user=User.objects.get(username=request.user.username),
                 name=name,
+                email=email,
                 degree=degree,
                 branch=branch,
                 degreePercentage=degreepercentage,
                 yop=yop,
                 linkedin=lin,
-                contact=cno,
+                mobno=cno,
                 placementStatus=ps
             )
             
         details.save()
+         
+        context = {
+            'data_added': True
+        }
+        return render(request, 'home/user.html', context)
+    
 
-        return redirect('success')
     else:
 
-        return render(request, 'home/admin.html')
-    
-def DataAdded(request):
+        user = request.user
+        context = {
+            'data_added': False
+        }
+        if StudentInfo.objects.filter(user=user).exists():
+            context = {
+            'data_added': True
+        }
+        return render(request, 'home/user.html', context)
 
-    return render(request, 'home/added.html')  
+def DataEditor(request):
+
+
+    if request.method == 'POST':
+        # Store Personal Details
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        degree = request.POST.get('degree')
+        branch = request.POST.get('branch')
+        degreepercentage = request.POST.get('degreepercentage')
+        yop = request.POST.get('yop')
+        lin = request.POST.get('lin')
+        cno = request.POST.get('cno')
+        ps = request.POST.get('ps', False) == 'on'
+
+        details = StudentInfo.objects.get(user=User.objects.get(username=request.user.username))
+        details.name = name
+        details.email = email
+        details.degree = degree
+        details.branch = branch
+        details.degreePercentage = degreepercentage
+        details.yop = yop
+        details.linkedin = lin
+        details.mobno = cno
+        details.placementStatus = ps
+        details.save()
+
+        context = {
+            'data_updated': True
+        }    
+        
+        return render(request, 'home/edit.html', context)
+        # return HttpResponse("Data Updated Successfully")
     
+    else:
+            
+        username = request.user.username
+        user = User.objects.get(username = username)
+        modelObj = StudentInfo.objects.filter(user = user)
+
+        if len(modelObj) == 0:
+            return HttpResponse("No data found")
+        
+        context = {
+            'data': modelObj.values()[0]
+        }
+
+        print("hi this is data", modelObj.values()[0], '\n', "username is: ", username, user, modelObj)
+        return render(request, 'home/edit.html', context)
+
 
 def DataViewer(request):
 
@@ -143,6 +197,7 @@ def DataViewer(request):
     else:
         details = StudentInfo.objects.all()
         context = {'details': details}
+        print(context)
         return render(request, 'home/viewer.html', context)
 
 

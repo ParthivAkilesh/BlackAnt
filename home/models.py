@@ -15,13 +15,15 @@ class StudentInfo(models.Model):
     #     return super().save(*args, **kwargs)
     
     # user = models.OneToOneField(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
+    email = models.CharField(max_length=200, null=True)
     degree = models.CharField(max_length=200, null=True)
     branch = models.CharField(max_length=200, null=True)
     degreePercentage = models.CharField(max_length=200,null=True)
     yop = models.CharField(max_length=200,null=True)
     linkedin = models.CharField(max_length=200, null=True)
-    contact = models.CharField(max_length=200, null=True)
+    mobno = models.CharField(max_length=200, null=True)
     placementStatus = models.BooleanField(default=False)
 
 

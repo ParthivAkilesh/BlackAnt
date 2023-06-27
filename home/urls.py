@@ -8,9 +8,10 @@ urlpatterns = [
     path('login', views.loginPage, name ="login"),
     path('signup', views.registerPage , name ="signup"),
     path('logout', views.logoutUser , name ="logout"),
-    path('admin_page', views.admin_page , name ="admin_page"),
-    path('addData', views.DataAdder, name='addData'),
-    path('success', views.DataAdded, name='success'),
+    path('user', views.DataAdder, name='user'),
+    path('edit', views.DataEditor, name='edit'),
+
+    ####
     path('viewer', views.DataViewer, name='viewer'),
     
     

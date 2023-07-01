@@ -1,9 +1,12 @@
+import os
+from django.conf import settings
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.models import User
 from django.contrib import messages
 from .forms import CreateUserForm
+from django.core.files.storage import FileSystemStorage
 from django.contrib.auth.decorators import login_required
 from .models import StudentInfo
 from django.http import HttpResponse
@@ -77,6 +80,13 @@ def logoutUser(request):
 def DataAdder(request):
 
     if request.method == 'POST':
+
+        # resume file
+        myform = Resume(request.POST,request.FILES)
+        MyFile = None
+        if myform.is_valid():
+            MyFile = request.FILES.get('file')
+
         # Store Personal Details
         name = request.POST.get('name')
         email = request.POST.get('email')
@@ -98,6 +108,7 @@ def DataAdder(request):
                 yop=yop,
                 linkedin=lin,
                 mobno=cno,
+                resume=MyFile,
                 placementStatus=ps
             )
             
@@ -119,6 +130,7 @@ def DataAdder(request):
             context = {
             'data_added': True
         }
+        
         return render(request, 'home/user.html', context)
 
 def DataEditor(request):

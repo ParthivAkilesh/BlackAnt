@@ -25,5 +25,3 @@ class StudentInfo(models.Model):
     linkedin = models.CharField(max_length=200, null=True)
     mobno = models.CharField(max_length=200, null=True)
     placementStatus = models.BooleanField(default=False)
-
-

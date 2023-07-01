@@ -10,9 +10,10 @@ urlpatterns = [
     path('logout', views.logoutUser , name ="logout"),
     path('user', views.DataAdder, name='user'),
     path('edit', views.DataEditor, name='edit'),
+    path('viewer', views.DataFilter, name='filter'),
 
     ####
-    path('viewer', views.DataViewer, name='viewer'),
+    # path('viewer', views.DataViewer, name='viewer'),
     
     
 ]

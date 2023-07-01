@@ -199,6 +199,51 @@ def DataViewer(request):
         context = {'details': details}
         print(context)
         return render(request, 'home/viewer.html', context)
+    
+
+def DataFilter(request):
+
+    if request.method == 'POST':
+
+        department = request.POST.get('dept')
+        year = request.POST.get('year')
+        placedStatus = request.POST.get('ps')
+
+        details = StudentInfo.objects.all()
+
+        if department=="ad":
+            details = details.filter(branch="AD")
+        elif department=="cse":
+            details = details.filter(branch="CSE")
+        elif department=="ece":
+            details = details.filter(branch="ECE")
+        elif department=="eee":
+            details = details.filter(branch="EEE")
+
+        if year=="2020":
+            details = details.filter(yop="2020")
+        elif year=="2021":
+            details = details.filter(yop="2021")
+        elif year=="2022":
+            details = details.filter(yop="2022")
+        elif year=="2023":
+            details = details.filter(yop="2023")
+        elif year=="2024":
+            details = details.filter(yop="2024")
+
+        if placedStatus=="placed":
+            details = details.filter(placementStatus=True)
+        elif placedStatus=="nonplaced":
+            details = details.filter(placementStatus=False)
+        
+        context = {'details': details}
+
+        return render(request, 'home/viewer.html', context)
+
+    else:
+        pass
+
+    return render(request, 'home/viewer.html')
 
 
 

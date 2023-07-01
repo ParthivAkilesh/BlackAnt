@@ -5,16 +5,6 @@ import uuid
 
 class StudentInfo(models.Model):
 
-
-    # id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    # Other fields for your model
-
-    # def save(self, *args, **kwargs):
-    #     if not self.id:
-    #         self.id = uuid.uuid4()
-    #     return super().save(*args, **kwargs)
-    
-    # user = models.OneToOneField(User, on_delete=models.CASCADE)
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     name = models.CharField(max_length=200, null=True)
     email = models.CharField(max_length=200, null=True)
@@ -24,4 +14,6 @@ class StudentInfo(models.Model):
     yop = models.CharField(max_length=200,null=True)
     linkedin = models.CharField(max_length=200, null=True)
     mobno = models.CharField(max_length=200, null=True)
+    resume = models.FileField(upload_to='resume/', null=True)
+    profile = models.ImageField(upload_to='profile/', null=True)
     placementStatus = models.BooleanField(default=False)

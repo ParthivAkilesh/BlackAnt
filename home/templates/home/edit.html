@@ -1,6 +1,6 @@
 
 
-{% if data_updated%}
+{% if data_updated %}
 
 <html>
 
@@ -146,7 +146,7 @@
                             <h4 style="color: #495057 ;">Placement Details</h4>
                         </div>
 
-                        <form class="mb-0" action="/edit" method="post">
+                        <form class="mb-0" action="/edit" method="post" enctype="multipart/form-data">
                             {% csrf_token %}
 
                             <div class="row mb-4">
@@ -218,6 +218,20 @@
                                     </div>
                             </div>
 
+                            
+                            <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Upload Resume File:</label>
+                                <input class="form-control" type="file" id="formFileMultiple" name="resume_file" multiple>
+                                <input type="hidden" name="remark" name="resume_file">
+                                
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="formFileMultiple1" class="form-label">Upload Profile Image:</label>
+                                <input class="form-control" type="file" id="formFileMultiple1" name="profile" multiple>
+                                <input type="hidden" name="remark" name="profile">
+                              </div>
+                            
                             <div class="float-end d-flex justify-content-center">
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-rounded"
@@ -248,8 +262,7 @@
         var ps = document.getElementById("ps");
 
 
-        console.log("{{data.placementStatus}}");
-        var psval = 
+       
 
         username.value = "{{data.name}}";
         email.value = "{{data.email}}";

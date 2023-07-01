@@ -230,6 +230,19 @@
                                 {{form.file}}
                             </div> {% endcomment %}
 
+                            <div class="mb-3">
+                                <label for="formFileMultiple" class="form-label">Upload Resume File:</label>
+                                <input class="form-control" type="file" id="formFileMultiple" name="resume_file" multiple>
+                                <input type="hidden" name="remark" name="resume_file">
+                                
+                              </div>
+
+                              <div class="mb-3">
+                                <label for="formFileMultiple1" class="form-label">Upload Profile Image:</label>
+                                <input class="form-control" type="file" id="formFileMultiple1" name="profile" multiple>
+                                <input type="hidden" name="remark" name="profile">
+                              </div>
+
                             <div class="float-end d-flex justify-content-center">
                                 <!-- Submit button -->
                                 <button type="submit" class="btn btn-primary btn-rounded"

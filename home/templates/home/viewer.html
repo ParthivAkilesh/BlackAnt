@@ -18,6 +18,10 @@
 
     <style>
 
+      .gradient-custom {
+        background: -webkit-linear-gradient(left, #D7E1EC, #FFFFFF);
+    }
+
     .button:active {
       background-color: green;
       border: 1px solid green;
@@ -34,61 +38,85 @@
 </style>
 </head>
 
-<body>
-  <div class="details">
-
-    <div class="logout-container">
-      <ul>
-          <a class="btn btn-warning" href="{% url 'logout' %}">Logout</a>
-      </ul>
-  </div>
-
-    <h1>Department Filter:</h1>
+<body class="gradient-custom">
+    <div class="container">
       <form action="/viewer" method="post">
         {% csrf_token %}
 
         <input type="hidden" name="dept" id="selectedDept" value="">
 
-        <input class="btn btn-primary button" name="dept" id="all" type="button" onclick="setDepartment('all')" value="All" />
-        <input type="button" class="btn btn-primary button" onclick="setDepartment('ad')" name="dept" id="ad" value="AD">
-        <input type="button" class="btn btn-primary button" onclick="setDepartment('ece')" name="dept" id="ece" value="ECE">
-        <input type="button" class="btn btn-primary button" onclick="setDepartment('cse')" name="dept" id="cse" value="CSE">
-        <input type="button" class="btn btn-primary button" onclick="setDepartment('eee')" name="dept" id="eee" value="EEE">
-        <br>
-        <br>
-
-        <select name="year" class="form-control">
-          <option value="all">All</option>
-          <option value="2020">2020</option>
-          <option value="2021">2021</option>
-          <option value="2022">2022</option>
-          <option value="2023">2023</option>
-          <option value="2024">2024</option>
-          <option value="2025">2025</option>
-          <option value="2026">2026</option>
-        </select>
-
-        <br>
-        <br>
-
-        <label>
-          <input type="radio" name="ps" value="all" checked> All
-        </label>
         
-        <label>
-          <input type="radio" name="ps" value="placed"> Placed
-        </label>
+        <div class="text-center">
+          <h1 style="color: #0080ff;"></h1>
+        </div>
+        <br>
+
+        {% comment %} <br>
+        <br> {% endcomment %}
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-6">
+              <h3>Departments</h3>
+              <input class="btn btn-primary button" name="dept" id="all" type="button" onclick="setDepartment('all')" value="All" />
+              <input type="button" class="btn btn-primary button" onclick="setDepartment('ad')" name="dept" id="ad" value="AD">
+              <input type="button" class="btn btn-primary button" onclick="setDepartment('ece')" name="dept" id="ece" value="ECE">
+              <input type="button" class="btn btn-primary button" onclick="setDepartment('cse')" name="dept" id="cse" value="CSE">
+              <input type="button" class="btn btn-primary button" onclick="setDepartment('eee')" name="dept" id="eee" value="EEE">
+            </div>
+            <div class="col-md-6">
+              <h3>Year of Passing</h3>
+              <select name="year" class="form-control">
+                <option value="all">All</option>
+                <option value="2020">2020</option>
+                <option value="2021">2021</option>
+                <option value="2022">2022</option>
+                <option value="2023">2023</option>
+                <option value="2024">2024</option>
+                <option value="2025">2025</option>
+                <option value="2026">2026</option>
+              </select>
+            </div>
+          </div>
+        </div>
         
-        <label>
-          <input type="radio" name="ps" value="nonplaced"> Non-Placed
-        </label>
+        
+
+        <br>
+        <br>
+
+
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <div class="btn-group">
+                <input type="radio" class="btn-check" name="ps" id="option1" value="all" autocomplete="off" checked />
+                <label class="btn btn-warning" for="option1">All</label>
+        
+                <input type="radio" class="btn-check" name="ps" id="option2" value="placed" autocomplete="off" />
+                <label class="btn btn-warning" for="option2">Placed</label>
+        
+                <input type="radio" class="btn-check" name="ps" id="option3" value="nonplaced" autocomplete="off" />
+                <label class="btn btn-warning" for="option3">Non Placed</label>
+              </div>
+            </div>
+          </div>
+        </div>
+        
 
         <br>
         <br>
 
 
 
-        <button class="btn btn-success btn-rounded" type="submit">Filter</button>
+        <div class="container">
+          <div class="row">
+            <div class="col-md-12 text-center">
+              <button class="btn btn-success btn-rounded" type="submit">Filter</button>
+            </div>
+          </div>
+        </div>
+        
       </form>
   </div>
 
@@ -113,7 +141,13 @@
         {% for detail in details %}
         <tr class="justify-content-center">
           <td>
-            <div class="d-flex align-items-center">        
+            <div class="d-flex align-items-center">  
+              <img
+                    src="{{ detail.profile.url }}"
+                    alt=""
+                    style="width: 45px; height: 45px"
+                    class="rounded-circle"
+                    />      
               <div class="ms-3">
                 <p class="fw-bold mb-1">{{ detail.name }}</p>
                 <p class="text-muted mb-0">{{ detail.email }}</p>
@@ -135,12 +169,12 @@
             {% endif %}
             </td>
           <td>
-              <a class="btn text-white" style="background-color: #0082ca;" href="{{ detail.linkedin }}" role="button">
+              <a class="btn text-white" style="background-color: #0082ca;" href="{{ detail.linkedin }}" role="button"  target="_blank">
                   <i class="fab fa-linkedin-in"></i>
                 </a>
             <br>
             <br>              
-            <a class="btn text-white" style="background-color: #0082ca;" href="{{ detail.resume.url }}" role="button">
+            <a class="btn text-white" style="background-color: #0082ca;" role="button" href="{{ detail.resume.url }}" target="_blank">
               <i class="fa fa-file"></i>
             </a>
           </td>
@@ -153,7 +187,16 @@
       </tbody>
     </table>
 
+    <div class="row mt-3 mx-3 justify-content-center" style="margin-top:25px ;">
+      <div class="col-md-3">
+          <div class="text-center">                   
+               <a href="/home" class="btn btn-info btn-rounded back-button" >Go to Home</a>
+          </div>    
+      </div>
+  {% comment %} </form> {% endcomment %}
 
+      
+</div>
 
 
   </div>

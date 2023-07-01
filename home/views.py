@@ -82,10 +82,9 @@ def DataAdder(request):
     if request.method == 'POST':
 
         # resume file
-        myform = Resume(request.POST,request.FILES)
-        MyFile = None
-        if myform.is_valid():
-            MyFile = request.FILES.get('file')
+        resume = request.FILES['resume_file']
+        profile = request.FILES['profile']
+
 
         # Store Personal Details
         name = request.POST.get('name')
@@ -108,7 +107,8 @@ def DataAdder(request):
                 yop=yop,
                 linkedin=lin,
                 mobno=cno,
-                resume=MyFile,
+                resume=resume,
+                profile=profile,
                 placementStatus=ps
             )
             
@@ -117,7 +117,7 @@ def DataAdder(request):
         context = {
             'data_added': True
         }
-        return render(request, 'home/user.html', context)
+        return render(request, 'home/home.html', context)
     
 
     else:
@@ -148,6 +148,9 @@ def DataEditor(request):
         cno = request.POST.get('cno')
         ps = request.POST.get('ps', False) == 'on'
 
+        resume = request.FILES['resume_file']
+        profile = request.FILES['profile']
+
         details = StudentInfo.objects.get(user=User.objects.get(username=request.user.username))
         details.name = name
         details.email = email
@@ -157,6 +160,10 @@ def DataEditor(request):
         details.yop = yop
         details.linkedin = lin
         details.mobno = cno
+        if resume:
+            details.resume = resume
+        if profile:
+            details.profile = profile
         details.placementStatus = ps
         details.save()
 
@@ -180,7 +187,7 @@ def DataEditor(request):
             'data': modelObj.values()[0]
         }
 
-        print("hi this is data", modelObj.values()[0], '\n', "username is: ", username, user, modelObj)
+        # print("hi this is data", modelObj.values()[0], '\n', "username is: ", username, user, modelObj)
         return render(request, 'home/edit.html', context)
 
 

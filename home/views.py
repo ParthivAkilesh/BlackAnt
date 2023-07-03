@@ -148,10 +148,20 @@ def DataEditor(request):
         cno = request.POST.get('cno')
         ps = request.POST.get('ps', False) == 'on'
 
-        resume = request.FILES['resume_file']
-        profile = request.FILES['profile']
-
         details = StudentInfo.objects.get(user=User.objects.get(username=request.user.username))
+
+        try:
+            resume = request.FILES['resume_file']
+            profile = request.FILES['profile']
+
+            details.resume = resume
+            details.profile = profile
+
+            print("changing file sorry!!!!!!!!!!!!!")
+
+        except:
+            pass
+
         details.name = name
         details.email = email
         details.degree = degree
@@ -159,11 +169,7 @@ def DataEditor(request):
         details.degreePercentage = degreepercentage
         details.yop = yop
         details.linkedin = lin
-        details.mobno = cno
-        if resume:
-            details.resume = resume
-        if profile:
-            details.profile = profile
+        details.mobno = cno    
         details.placementStatus = ps
         details.save()
 
@@ -222,6 +228,15 @@ def DataViewer(request):
 
 def DataFilter(request):
 
+    # get user object
+    username = request.user.username
+    if username == 'cdc':
+        context = {'admin': True}
+        print("ture for admin")
+    else:
+        print("no not the admin")
+        context = {'admin': False}
+
     if request.method == 'POST':
 
         department = request.POST.get('dept')
@@ -255,14 +270,16 @@ def DataFilter(request):
         elif placedStatus=="nonplaced":
             details = details.filter(placementStatus=False)
         
-        context = {'details': details}
+        context['details'] = details
 
         return render(request, 'home/viewer.html', context)
 
     else:
         pass
 
-    return render(request, 'home/viewer.html')
+
+    
+    return render(request, 'home/viewer.html', context)
 
 
 

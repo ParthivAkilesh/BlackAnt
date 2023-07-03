@@ -120,8 +120,6 @@
       </form>
   </div>
 
-
-
   <br>
 
   <div class="table-responsive">
@@ -150,8 +148,10 @@
                     />      
               <div class="ms-3">
                 <p class="fw-bold mb-1">{{ detail.name }}</p>
+                {% if admin %}
                 <p class="text-muted mb-0">{{ detail.email }}</p>
                 <p class="text-muted mb-0">{{ detail.mobno }}</p>
+                {% endif %}
               </div>
             </div>
           </td>
